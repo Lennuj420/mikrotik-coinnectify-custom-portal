@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title -->
+    <title id="title"></title>
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+
+    <!-- font -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/css/purecssframework.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <header class="main-container header fixed">
+        <!-- Nav Bar with Logo Area -->
+        <div class="flex-grid  navbar">
+            <div class="col-2 col-12-md logo">
+                <a href=""><img class=" img-responsive " src="./assets/img/wifi-darkbrown.webp" alt=""></a>
+            </div>
+
+        </div>
+    </header>
+    <!-- CHAP login -->
+    <div id="chap_login">
+        $(if chap-id)
+        <form name="sendin" action="$(link-login-only)" method="post">
+           <input type="hidden" name="username"/>
+           <input type="hidden" name="password"/>
+           <input type="hidden" name="dst" value="$(link-orig)"/>
+           <input type="hidden" name="popup" value="true"/>
+        </form>
+        <script type="text/javascript" src="/assets/js/md5.js"></script>
+        <script type="text/javascript">
+           function doLogin() {document.sendin.username.value = document.login.username.value;document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');document.sendin.submit();return false;}
+        </script>
+        $(endif)
+    </div>
+    <div class="fixed-nav-space" id="top"></div>
+    <div class="main-container">
+        <div class="flex-grid">
+            <!-- main column -->
+            <div class="col-4 col-offset-4 col-6-md col-offset-3-md col-10-sm col-offset-1-sm">
+                <!-- panel -->
+                <div class="panel text-center">
+                    <!-- <div class="panel-header">
+                    </div> -->
+                    <!-- panel body -->
+                    <div class="panel-body">
+                        <h1><b>Lennuj P1soWiFi</b></h1>
+                        <h2 class=" text-danger"><b>STATUS: DISCONNECTED</b></h2>
+                        <!-- <img src="./assets/img/wifi-darkbrown.webp" class="img-responsive" alt=""> -->
+                        <!-- rates table -->
+                        <div class="tbl-responsive">
+                            <table class="tbl striped-odd">
+                                <thead>
+                                    <tr>
+                                        <th>Price</th>
+                                        <th>Time</th>
+                                        <th>Validity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>P 1</td>
+                                        <td>10 minutes</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 5</td>
+                                        <td>1 Hour</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 10</td>
+                                        <td>3 Hours</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 30</td>
+                                        <td>1 Day</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- rates table -->
+                        <br>
+                        <!-- <label onclick="insert_coin()" class="btn btn-xs success full-width rounded-more-corners glow" for="insert_coin_modal">
+                            <h2><b>INSERT COIN</b></h2>
+                        </label> -->
+                        <button id="insert_coin" class="btn btn-xs success full-width rounded-more-corners glow">
+                            <label for="insert_coin_modal"><h2><b>INSERT COIN</b></h2></label>
+                        </button>
+                            
+                    </div>
+                    <!-- /panel body -->
+
+                    <div class="panel-footer ">
+                        <div class="flex-grid">
+                            <div class="col-4-lg">
+                                <!-- <label class="btn btn-sm full-width info rounded-more-corners" for="qrcode_modal">
+                                    <h5><i class="fa fa-qrcode"></i> <b>QRcode</b></h5>
+                                </label> -->
+                                <a href="https://laksa19.github.io/myqr" class="btn btn-sm full-width info rounded-more-corners"><h5><i class="fa fa-qrcode"></i> <b>QRcode</b></h5></a>
+                            </div>
+                            <div class="col-4-lg">
+                                <label class="btn btn-sm full-width info rounded-more-corners" for="voucher_modal">
+                                    <h5><i class="fa fa-ticket-alt"></i> <b>Voucher</b></h5>
+                                </label>
+                            </div>
+                            <div class="col-4-lg">
+
+                                <label class="btn btn-sm full-width info rounded-more-corners" for="account_modal">
+                                    <h5><i class="fa fa-user"></i> <b>Account</b></h5>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- panel -->
+            </div> <!-- main column -->
+        </div><!-- flex-grid -->
+    </div> <!-- main container -->
+    <!-- insert coin modal -->
+    <input type="radio" name="insert-coin" class="hide" id="hide_insert_coin_modal" checked>
+    <div class="modal-container">
+        <input type="radio" name="insert-coin" class="hide modal-control" id="insert_coin_modal">
+        <div class="modal-shadow"></div>
+        <div class="modal-wrap">
+            <div class="modal text-center">
+                <div class="modal-body" id="insert-coin">
+                    <img src="/assets/img/insert-coin1.gif" class="img-responsive" alt="">
+                    <iframe width="100%" height="350px" scrolling="no" style="border:none;" id="frame-main"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn primary">Some Button</a>
+                    <label for="hide_insert_coin_modal"
+                        class="btn danger rounded-more-corners rounded-more-corners">Cancel</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /no click shadow Modal-->  
+
+    <!-- voucher modal -->
+    <input type="radio" name="insert-coin" class="hide" id="hide_voucher_modal" checked>
+    <div class="modal-container">
+        <input type="radio" name="insert-coin" class="hide modal-control" id="voucher_modal">
+        <div class="modal-shadow"></div>
+        <div class="modal-wrap">
+            <div class="modal text-center">
+                <!-- <div class="modal-header">
+                                    </div> -->
+                <div class="modal-body" id="insert-coin">
+                    <form>
+                        <h1><b>Voucher Login</b></h1>
+                        <br>
+                        <div class="form-elements elements-xl">
+                            <input type="tel" placeholder="ex.1234" class="rounded-more-corners text-center">
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="flex-grid">
+                            <div class="col-6 col-6-lg">
+                                <button type="button" class="btn danger btn-xs full-width rounded-more-corners">
+                                    <label for="hide_voucher_modal">
+                                        <h3><b>Cancel</b></h3>
+                                    </label>
+                                </button>
+                            </div>
+                            <div class="col-6 col-6-lg">
+                                <button type="submit" class="btn success btn-xs full-width rounded-more-corners">
+                                    <h3><b>Login</b></h3>
+                                </button>
+                                </b></h3>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /voucher modal-->
+
+    <!-- account modal -->
+    <input type="radio" name="insert-coin" class="hide" id="hide_account_modal" checked>
+    <div class="modal-container">
+        <input type="radio" name="insert-coin" class="hide modal-control" id="account_modal">
+        <div class="modal-shadow"></div>
+        <div class="modal-wrap">
+            <div class="modal text-center">
+                <!-- <div class="modal-header">
+                    </div> -->
+                <div class="modal-body" id="">
+                    <form>
+                        <h1><b>Account Login</b></h1>
+                        <br>
+                        <div class="form-elements elements-xl">
+                            <input type="text" placeholder="username" class="text-center rounded-more-corners in">
+                        </div>
+                        <div class="form-elements elements-xl">
+                            <!-- <label for="email"><b>Enter Voucher Code</b></label> -->
+                            <input type="password" placeholder="password" class="text-center rounded-more-corners in">
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="flex-grid">
+                            <div class="col-6 col-6-lg">
+                                <button type="button" class="btn danger btn-xs full-width rounded-more-corners">
+                                    <label for="hide_account_modal">
+                                        <h3><b>Cancel</b></h3>
+                                    </label>
+                                </button>
+                            </div>
+                            <div class="col-6 col-6-lg">
+                                <button type="submit" class="btn success btn-xs full-width rounded-more-corners">
+                                    <h3><b>Login</b></h3>
+                                </button>
+                                </b></h3>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- /account modal-->
+
+    <!-- CHANGE IP ADDRESS TO YOUR NODEMCU'S IP ADDRESS: REQUIRED FOR PRELOADING INSERT COIN DISPLAY -->
+    <!-- <iframe src="http://10.0.0.2"style="display: none;"></iframe> -->
+    <link href="http://10.0.0.3" rel="preload" as="document"></link>
+    <script>
+        (function () {
+            document.getElementById("insert_coin").onclick = function(){
+                document.getElementById("frame-main").setAttribute('src', 'http://10.0.0.7/ea74aa6e3cfe4ba5836e91da82c7d411?a9bd5a5a23485c8ccd599c0d68a573=$(mac)');
+            }
+        })();
+    </script>
+</body>
+
+</html>

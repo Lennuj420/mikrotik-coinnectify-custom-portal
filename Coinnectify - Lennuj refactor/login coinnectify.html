@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet hotspot - Log in</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/bootstrapv4.min.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+.blink { -webkit-animation: blink 1.59s linear infinite;
+-moz-animation: blink 1.59s linear infinite;
+-ms-animation: blink 1.59s linear infinite;
+-o-animation: blink 1.59s linear infinite;
+animation: blink 1.59s linear infinite; } @-webkit-keyframes blink { 0% { opacity: 1; } 50% { opacity: 1; } 50.01% { opacity: 0; } 100% { opacity: 0; } } @-moz-keyframes blink { 0% { opacity: 1; } 50% { opacity: 1; } 50.01% { opacity: 0; } 100% { opacity: 0; } } @-ms-keyframes blink { 0% { opacity: 1; } 50% { opacity: 1; } 50.01% { opacity: 0; } 100% { opacity: 0; } } @-o-keyframes blink { 0% { opacity: 1; } 50% { opacity: 1; } 50.01% { opacity: 0; } 100% { opacity: 0; } } @keyframes blink { 0% { opacity: 1; } 50% { opacity: 1; } 50.01% { opacity: 0; } 100% { opacity: 0; } }
+
+</style>
+</head>
+
+<body>
+
+    <!-- two other colors
+
+<body class="lite">
+<body class="dark">
+
+-->
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script src="/md5.js"></script>
+    <script>
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    <div class="ie-fixMinHeight">
+
+        <div class="main">
+
+
+            <div style="margin-top:-10px;" class="wrap animated fadeIn">
+                <img style="margin-top:-1px;" alt="" src="/img/logo.png" style="margin:10px auto;" />
+				<br><br>
+                <center>
+                    <small style="text-transform:uppercase;font-weight:bold;color:#fff;font-size:16px;">Status:</small>
+                    <img alt="" class="img-fluid" width="20px" height="20px" src="img/disconnected.png" /><small style="text-transform:uppercase;font-weight:bold;color:#e52f2f;font-size:20px;"><b>Disconnected</b></small>
+                    <br>
+                    <div style="margin-top:-6px;margin-bottom:-6px"></div>
+                    <small style="color:#fff;font-size:12px;">IP Address | $(ip)</small>
+                    <br>
+                    <div style="margin-top:-6px;margin-bottom:-6px"></div>
+                    <small style="color:#fff;font-size:12px;">Mac Address | $(mac)</small>
+                </center>
+                <p class="info $(if error)alert$(endif)">
+                    $(if error == "") $(endif) $(if error)$(error)$(endif)
+                </p>
+                <hr class="prettyline">
+
+                <div class="button-jittery" style="margin-top:-10px;margin-bottom:10px;">
+                    <button id="button-main" class="btn btn-success btn-block" data-target="#selectmain" data-toggle="modal" data-backdrop="static" data-keyboard="false">Insert Coins</button>
+                </div>
+				<button id="btnvrc" class="btn btn-info btn-inline" onclick="voucher();">Voucher</button>
+				<button id="btnmem" class="btn btn-warning btn-inline" onclick="member();">Member</button>
+
+				<center><div class="box" id="infologin" ></div></center>
+
+
+
+					  <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                        <input type="hidden" name="dst" value="$(link-orig)" />
+                        <input type="hidden" name="popup" value="true" />
+
+                            <label>
+                        <img class="ico" src="img/user.svg" alt="#" />
+                            <input style="margin-bottom:-5px;" name="username" type="text" value="$(username)" />
+                       </label>
+                            <label>
+
+                            <input style="margin-bottom:-5px;" name="password" type="password" />
+                      </label>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top:-20px;" />Connect</button>
+                    </form>
+
+
+
+
+
+
+                $(if trial == 'yes')<a style="margin-top:-10px;" class="btn btn-danger btn-block" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">Free Trial</a>$(endif)
+
+                <!-- CAROUSEL -->
+                <!--
+				<div id="carousel-id" class="carousel slide"  data-interval="3000" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+					   <div class="carousel-item active">
+						  <img src="img/alert.png" class="img-fluid">
+					   </div>
+					   <div class="carousel-item ">
+						  <img src="img/alert.png" class="img-fluid">
+					   </div>
+					</div>
+				 </div>
+		 -->
+                <hr class="prettyline" style="margin-bottom:-5px;margin-top:5px">
+                <marquee class="running-text text-info" direction="left" onmouseout="this.start() " onmouseover="this.stop()" scrollamount="4"><small style="color:#fff;font-size:12px;font-weight:bold;">Announcement: The quick brown fox jumps over the lazy dog.</small>
+                </marquee>
+                <br>
+                <table class="table table-striped table-bordered table-sm">
+                    <tr class="thead-dark">
+                        <th>Amount</th>
+                        <th>Time</th>
+                        <th>Validity</th>
+                    </tr>
+                    <tr>
+                        <td>P1</td>
+                        <td>12 MIN</td>
+                        <td>30 MIN</td>
+                    </tr>
+                    <tr>
+                        <td>P5</td>
+                        <td>1 HRS</td>
+                        <td>5 HRS</td>
+                    </tr>
+                    <tr>
+                        <td>P10</td>
+                        <td>3 HRS</td>
+                        <td>8 HRS</td>
+                    </tr>
+                </table>
+                <p class="info bt">Powered by Coinnectify!</p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="selectmain" class="modal fade bd-example-modal-sm" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xs-7 align-middle p-lg">
+                        <center>
+                            <iframe width="100%" height="320px" scrolling="no" style="border:none;" id="frame-main"></iframe>
+                        </center>
+                        <div class="panel-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <iframe src="http://10.5.49.249" width="0%" height="0" style="display:none"></iframe> <!-- CHANGE IP ADDRESS TO YOUR NODEMCU'S IP ADDRESS -->
+
+</body>
+<script type="text/javascript" src="js/coinnectify.js"></script>
+<script type="text/javascript" src="js/bootstrapv4.min.js"></script>
+<script>
+(function() {
+        $("#button-main").click(function() {
+            $("#frame-main").attr('src', 'http://10.5.49.249/ea74aa6e3cfe4ba5836e91da82c7d411?a9bd5a5a23485c8ccd599c0d68a573=$(mac)'); <!-- CHANGE IP ADDRESS TO YOUR NODEMCU'S IP ADDRESS -->
+        });
+    })();
+</script>
+<script type="text/javascript">
+document.login.username.focus();
+
+var infologin = document.getElementById('infologin');
+infologin.innerHTML = "Enter your code and tap connect.";
+
+// login page 2 mode by Laksamadi Guko
+var username = document.login.username;
+var password = document.login.password;
+
+username.placeholder = "Voucher Code";
+password.type = "hidden";
+
+// set password = username
+function setpass() {
+    var user = username.value
+    //user = user.toLowerCase();
+    username.value = user;
+    password.value = user;
+}
+
+username.onkeyup = setpass;
+
+// change to voucher mode
+function voucher() {
+    username.focus();
+    username.onkeyup = setpass;
+    username.placeholder = "Voucher Code";
+    password.type = "hidden";
+    infologin.innerHTML = "Enter your code and tap connect.";
+}
+
+// change to member mode
+function member() {
+    username.focus();
+    username.onkeyup = "";
+    username.placeholder = "Username";
+	password.placeholder = "Password";
+    password.type = "password";
+	password.style = "margin-bottom:20px;margin-top:5px";
+    infologin.innerHTML = "Enter Username and Password.";
+}
+</script>
+</html>

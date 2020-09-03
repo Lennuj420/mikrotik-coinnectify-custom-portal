@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- 2sec delay -->
+	<!-- <meta http-equiv="refresh" content="2; url=$(link-redirect)">  -->
+	<!-- 0sec delay -->
+	<meta http-equiv="refresh" content="0; url=$(link-redirect)">
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	
+	<!-- title -->
+    <title id="title"></title>
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+
+    <!-- font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/purecssframework.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+</head>
+<body>
+
+<div class="main-container">
+	<div class="flex-grid">
+		<!-- main column -->
+		<div class="col-4-lg col-offset-4-lg col-6-md col-offset-3-md col-8-sm col-offset-2-sm col-12-xs col-offset-clear-xs text-center">
+			<h1>Success!</h1>
+				<h2>You are logged in</h2>
+				<p>If not redirected automatically, <a href="./login.html">click here</a>.</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	document.getElementById('title').innerHTML = window.location.hostname + " > redirect";
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- $(if refresh-timeout)<meta http-equiv="refresh" content="$(refresh-timeout-secs)">$(endif) -->
+    
+    <!-- title -->
+    <title id="title"></title>
+    
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+
+    <!-- font -->
+    <link rel="stylesheet" href="/css/icomoon.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/purecssframework.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <script language="JavaScript">
+            function openLogin() {
+            if (window.name != 'hotspot_logout') return true;
+            open('$(link-login)', '_blank', '');
+            window.close();
+            return false;
+            }
+        </script>
+
+    <div class="main-container">
+        <div class="flex-grid">
+            <!-- main column -->
+            <div class="col-4 col-offset-4 col-6-md col-offset-3-md col-8-sm col-offset-2-sm col-12-xs col-offset-clear-xs ">
+                <div class="panel text-center"><!-- panel -->
+                    <div class="panel-body"><!-- panel body -->
+                        <h1><b  class="text-x3">
+                            $(if login-by == 'trial')
+                            trial
+                            $(elif login-by != 'mac')
+                            $(username)
+                            $(endif)
+                        </b></h1>
+                        <h2 class="text-x2"> <b>Status: <span class="text-success"><i class="icon-wifi"></i> Connected</span></b></h2>
+                        <hr>
+                        <div class="tbl-responsive">
+                            <table class="tbl tbl-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>IP Address</th>
+                                        <td>$(ip)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mac Address</th>
+                                        <td>$(mac)</td>
+                                    </tr>
+                                    $(if session-time-left)
+                                    <tr>
+                                        <th>
+                                            <h2><b>Time Remaining:</b></h2>
+                                        </th>
+                                        <td>
+                                            <h2><b class="text-secondary">$(session-time-left)</b></h2>
+                                        </td>
+                                    </tr>
+                                    $(endif)
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <!-- resume button -->
+                        <form action="$(link-login)" id="login" onSubmit="return openLogin()">
+                            <input type="submit" id="login_submit" hidden>
+                            <a href="#" onclick="clicker('login_submit')" class="btn success btn-lg full-width rounded-more-corners"><b><i class="icon-play3"></i> Resume Time</b></a>
+                        </form>
+                    </div><!-- /panel body -->
+                </div><!-- panel -->
+            </div> <!-- main column -->
+        </div><!-- flex-grid -->
+    </div> <!-- main container -->
+    
+</div>
+<script type="text/javascript">
+	document.getElementById('title').innerHTML = window.location.hostname + " > logout";
+    // function to trigger chain click using anchor tag
+    function clicker(elementId) {
+            document.getElementById(elementId).click();
+        }
+</script>
+</body>
+</html>

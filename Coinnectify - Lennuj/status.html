@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- $(if refresh-timeout)<meta http-equiv="refresh" content="$(refresh-timeout-secs)">$(endif) -->
+    
+    <!-- title -->
+    <title id="title"></title>
+    
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+
+    <!-- font -->
+    <link rel="stylesheet" href="/css/icomoon.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/purecssframework.css">
+    <link rel="stylesheet" href="/css/style.css">
+        <script language="JavaScript">
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout','toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+    </script>
+</head>
+
+<body $(if advert-pending='yes' ) onLoad="openAdvert()" $(endif)>
+    <!-- nav -->
+    <header class="main-container header">
+        <!-- Nav Bar with Logo Area -->
+        <div class="flex-grid  navbar">
+            <div class="col-2 col-12-md logo">
+                <a href=""><img class="img-responsive" src="./img/wifi-darkbrown.webp" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <!-- /nav -->
+
+    <div class="main-container">
+        <div class="flex-grid">
+            <!-- main column -->
+            <div class="col-4 col-offset-4 col-6-md col-offset-3-md col-8-sm col-offset-2-sm col-12-xs col-offset-clear-xs ">
+                <div class="panel text-center"><!-- panel -->
+                    <div class="panel-body"><!-- panel body -->
+                        <h1><b  class="text-x3">
+                            $(if login-by == 'trial')
+                            trial
+                            $(elif login-by != 'mac')
+                            $(username)
+                            $(endif)
+                        </b></h1>
+                        <h2 class="text-x2"> <b>Status: <span class="text-success"><i class="icon-wifi"></i> Connected</span></b></h2>
+                        <hr>
+                        <div class="tbl-responsive">
+                            <table class="tbl tbl-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>IP Address</th>
+                                        <td>$(ip)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mac Address</th>
+                                        <td>$(mac)</td>
+                                    </tr>
+                                    $(if session-time-left)
+                                    <tr>
+                                        <th>
+                                            <h2><b>Time Remaining:</b></h2>
+                                        </th>
+                                        <td>
+                                            <h2><b class="text-secondary" id="displayTime"></b></h2>
+                                        </td>
+                                    </tr>
+                                    $(endif)
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                        <!-- <a href="#" class="btn success btn-lg full-width rounded-more-corners"><b><i class="icon-plus"></i> Add Time</b></a> -->
+                        <!-- logout button -->
+                        <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                            <input type="submit" id="logout_submit" hidden>
+                            <a href="#" onclick="clicker('logout_submit')" class="btn primary btn-lg full-width rounded-more-corners"><b><i class="icon-pause2"></i> Pause Time</b></a>
+                        </form>
+                    </div><!-- /panel body -->
+                </div><!-- panel -->
+            </div> <!-- main column -->
+        </div><!-- flex-grid -->
+    </div> <!-- main container -->
+
+    <!-- <div class="main">
+        <form action="$(link-logout)" name="logout" onSubmit="return openLogout()"> -->
+
+            <!-- $(if login-by == 'trial')
+            <div style="margin-top:20px; text-align: center;">
+                <h3>Welcome</h3><i style="font-size:50px;" class="icon icon-user-circle-o">&#xf2be;</i>
+                <h3>trial user</h3>
+            </div><br>
+            $(elif login-by != 'mac')
+            <div style="margin-top:20px; text-align: center;">
+                <h3>Welcome</h3><i style="font-size:50px;" class="icon icon-user-circle-o">&#xf2be;</i>
+                <h3 id="user">$(username)</h3>
+            </div><br>
+            $(endif)
+            <table class="table2">
+                <tr>
+                    <td align="right" style="width: 40%;">IP Address <i class="icon icon-sitemap">&#xf0e8;</i> </td>
+                    <td>$(ip)</td>
+                </tr>
+                <tr>
+                    <td align="right">MAC Address <i class="icon icon-barcode">&#xe80a;</i> </td>
+                    <td>$(mac)</td>
+                </tr>
+                <tr>
+                    <td align="right">Upload <i class="icon icon-upload">&#xe808;</i> </td>
+                    <td>$(bytes-in-nice)</td>
+                </tr>
+                <tr>
+                    <td align="right">Download <i class="icon icon-download">&#xe809;</i> </td>
+                    <td>$(bytes-out-nice)</td>
+                </tr>
+                <tr>
+                    <td align="right">Terkoneksi <i class="icon icon-exchange">&#xf0ec;</i> </td>
+                    <td>$(uptime)</td>
+                </tr>
+                $(if remain-bytes-total)
+                <tr>
+                    <td align="right">Sisa Kuota <i class="icon icon-hourglass-2">&#xf252;</i> </td>
+                    <td>$(remain-bytes-total-nice)</td>
+                </tr>
+                $(endif)
+                $(if session-time-left)
+                <tr>
+                    <td align="right">Sisa Waktu <i class="icon icon-clock">&#xe805;</i> </td>
+                    <td>$(session-time-left)</td>
+                </tr>
+                $(endif)
+                $(if blocked == 'yes')
+                <tr>
+                    <td align="right">Status <i class="icon icon-check">&#xe807;</i> </td>
+                    <td>
+                        <div style="color: #FF8080">
+                            <a href="$(link-advert)" target="hotspot_advert">advertisement</a> required</div>
+                    </td>
+                </tr>
+                $(elif refresh-timeout)
+                <tr>
+                    <td align="right">Refresh <i <i class="icon icon-arrows-cw">&#xe800;</i> </td>
+                    <td>$(refresh-timeout)</td>
+                </tr>
+                $(endif)
+                <tr>
+                    <td align="right">Expired <i <i class="icon icon-calendar">&#xe806;</i> </td>
+                    <td style="padding-top:0px; padding-left:2px;"><iframe id="exp" frameborder="0" scrolling="no"
+                            src="about:blank"></iframe></td>
+                </tr>
+
+            </table>
+            $(if login-by-mac != 'yes')
+            <br> -->
+            <!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+<button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+<!-- end of user manager link -->
+            <!-- <button class="button2" type="submit"><i class="icon icon-logout">&#xe804;</i> Logout</button>
+            $(endif) -->
+        </form>
+    </div>
+    <script type="text/javascript">
+        // document.getElementById('title').innerHTML = window.location.hostname + " > status";
+        //get vaidity
+        // var usr = document.getElementById('user').innerHTML
+        // var url =
+        //     "https://example.com/status/status.php?name="; // http://ip-server-mikhmon/mikhmonv2/status/status.php?name=
+        // var SessionName = "wifijoss"
+        // var getvalid = url + usr + "&session=" + SessionName
+        // document.getElementById('exp').src = getvalid;
+        
+        // count download timer for remaining time left
+        (function () {
+            var timer=$(session-time-left-secs);
+         	setInterval(function() {
+         			timer=timer-1;
+         			var days=Math.floor(timer/(3600*24));
+         			var hours=Math.floor(timer/3600)%24;
+         			var minutes=Math.floor(timer/60)%60;
+         			var seconds=Math.floor(timer)%60;
+         				if(timer>=86400){
+         				var res="<b>"+days+"</b>d <b>"+hours+"</b>h <b>"+minutes+"</b>m <b>"+seconds+"</b>s";
+         				}else if(timer>=3600&&timer<=86400){
+         				    var res="<b>"+hours+"</b>h <b>"+minutes+"</b>m <b>"+seconds+"</b>s";
+         				}else if(timer>=1&&timer<=3600){
+         				    var res="<b>"+minutes+"</b>m <b>"+seconds+"</b>s";
+         				}else{
+         				    var res="--";
+         				}
+         				document.getElementById("displayTime").innerHTML = res;
+         	},1000);
+        })();
+        // function to trigger chain click using anchor tag
+        function clicker(elementId) {
+            document.getElementById(elementId).click();
+        }
+    </script>
+</body>
+
+</html>

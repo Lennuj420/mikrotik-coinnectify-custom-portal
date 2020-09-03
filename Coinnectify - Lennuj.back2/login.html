@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- title -->
+    <title id="title"></title>
+    <!-- favicon -->
+    <link rel="icon" href="favicon.ico" type="image/gif" sizes="16x16">
+
+    <!-- font -->
+    <link rel="stylesheet" href="/css/icomoon.css">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/purecssframework.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value +
+                '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+
+    <header class="main-container header">
+        <!-- Nav Bar with Logo Area -->
+        <div class="flex-grid  navbar">
+            <div class="col-2 col-12-md logo">
+                <a href=""><img class="img-responsive" src="./img/wifi-darkbrown.webp" alt=""></a>
+            </div>
+        </div>
+    </header>
+    <div class="fixed-nav-space" id="top"></div>
+    <div class="main-container">
+        <div class="flex-grid">
+            <!-- main column -->
+            <!-- <div class="col-4-lg col-offset-4-lg col-6-md col-offset-3-md col-8-sm col-offset-2-sm col-12-xs col-offset-clear-xs "> -->
+            <div class="col-4 col-offset-4 col-6-md col-offset-3-md col-8-sm col-offset-2-sm col-12-xs col-offset-clear-xs ">
+                <!-- panel -->
+                <div class="panel text-center">
+                    <!-- panel body -->
+                    <div class="panel-body">
+                        <!-- <h1><b>Lennuj P1soWiFi</b></h1> -->
+                        <h1><b>Status: <span class="text-danger"> <i class="icon-wifi_off"></i> Disconnected</span></b></h1>
+                        <hr>
+                        <!-- rates table -->
+                        <div class="tbl-responsive">
+                            <table class="tbl striped-odd">
+                                <thead>
+                                    <tr>
+                                        <th>Price</th>
+                                        <th>Time</th>
+                                        <th>Validity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>P 1</td>
+                                        <td>10 minutes</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 5</td>
+                                        <td>1 Hour</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 10</td>
+                                        <td>3 Hours</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                    <tr>
+                                        <td>P 30</td>
+                                        <td>1 Day</td>
+                                        <td>1 Day</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- rates table -->
+                        <hr>
+                        <br>
+                        <a href="#" onclick="insert_coin()" class="btn success full-width rounded-more-corners">
+                            <h1><b>INSERT COIN</b></h1>
+                        </a>
+                        <br>
+                        <br>
+                        <div class="flex-grid">
+                            <div class="col-4-lg">
+                                <a href="https://laksa19.github.io/myqr" class="btn  info rounded-more-corners">
+                                    <i class="icon-qrcode"></i><br><b>QRcode</b>
+                                </a>
+                            </div>
+                            <div class="col-4-lg">
+                                <a href="#" onclick="voucher_login()" class="btn  info rounded-more-corners">
+                                    <i class="icon-ticket"></i><br><b>Voucher</b>
+                                </a>
+                            </div>
+                            <div class="col-4-lg">
+                                <a href="#" onclick="account_login()"
+                                    class="btn  info rounded-more-corners">
+                                    <i class="icon-user"></i><br><b>Account</b>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- /panel body -->
+                </div><!-- panel -->
+            </div> <!-- main column -->
+        </div><!-- flex-grid -->
+    </div> <!-- main container -->
+    <!-- insert coin modal -->
+    <input type="radio" name="insert-coin" class="hide" id="hide_insert_coin_modal" checked>
+    <div class="modal-container">
+        <input type="radio" name="insert-coin" class="hide modal-control" id="insert_coin_modal">
+        <div class="modal-shadow"></div>
+        <div class="modal-wrap">
+            <div class="modal text-center">
+                <div class="modal-body" id="insert-coin">
+                    <img src="./img/insert-coin1.gif" class="img-responsive" style="height: 50px;" alt="">
+                    <iframe width="100%" height="350px" scrolling="no" id="frame-main"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /no click shadow Modal-->
+
+    <!-- login form modal -->
+    <input type="radio" name="login_modal_control" class="hide" id="hide_login_modal" checked>
+    <div class="modal-container">
+        <input type="radio" name="login_modal_control" class="hide modal-control" id="login_modal">
+        <div class="modal-shadow"></div>
+        <div class="modal-wrap">
+            <div class="modal text-center">
+                <div class="modal-body" id="">
+                    <h2><b id="login_title"></b></h2>
+                    <br>
+                    <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"$(endif)>
+                        <input type="hidden" name="dst" value="$(link-orig)" /><!-- original link -->
+                        <input type="hidden" name="popup" value="false" /><!-- popup settings -->
+                        <div class="form-elements elements-lg">
+                            <input name="username" type="text" placeholder="username" value="$(username)" class="text-center rounded-more-corners in"><!-- username -->
+                        </div>
+                        <div class="form-elements elements-lg">
+                            <input name="password" type="password" placeholder="password" class="text-center rounded-more-corners in"><!-- password -->
+                        </div>
+                        <br>
+                        <hr>
+                        <!-- buttons -->
+                        <div class="flex-grid">
+                            <div class="col-6 col-6-lg">
+                                <a href="#" onclick="clicker('hide_login_modal')" class="btn danger btn-lg full-width rounded-more-corners"><b>Cancel</b></a>
+                            </div>
+                            <div class="col-6 col-6-lg">
+                                <input type="submit" hidden id="login_submit">
+                                <a href="#" onclick="clicker('login_submit')" class="btn success btn-lg full-width rounded-more-corners"><b>Login</b></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /login form modal-->
+
+    <!-- CHANGE IP ADDRESS TO YOUR NODEMCU'S IP ADDRESS: REQUIRED FOR PRELOADING INSERT COIN DISPLAY -->
+    <iframe src="http://10.0.0.252" width="0%" height="0" style="border:none;"></iframe>
+    <script>
+        function insert_coin() {
+            document.getElementById("frame-main").setAttribute('src',
+                'http://10.0.0.252/ea74aa6e3cfe4ba5836e91da82c7d411?a9bd5a5a23485c8ccd599c0d68a573=$(mac)');
+            document.getElementById("insert_coin_modal").click();
+        }
+        // function to trigger modal using anchor tag
+        function clicker(modalId) {
+            document.getElementById(modalId).click();
+        }
+        // get form handlers
+        var loginFormTitle = document.getElementById("login_title")
+        var loginForm = document.login;
+        var username = loginForm.username;
+        var password = loginForm.password;
+
+        // set password = username
+        function setpass() {
+            var user = username.value;
+            username.value = user;
+            password.value = user;
+        }
+
+        // prepare form for voucher login
+        function voucher_login(){
+            //change form title
+            loginFormTitle.innerHTML = "Voucher Login";
+            //change input type
+            username.type = "tel";
+            password.type = "hidden";
+            //clear any input
+            username.value = "";
+            password.value = "";
+            // set placehoder for guide
+            username.placeholder = "Enter voucher here";
+            //attach event to input;
+            username.onkeyup = setpass;
+            // open form modal
+            document.getElementById("login_modal").click();
+            // focus username input
+            username.focus();
+        }
+
+        // prepare form for account login
+        function account_login(){
+            //change form title
+            loginFormTitle.innerHTML = "Account Login";
+            // change input type
+            username.type = "text";
+            password.type = "password";
+            // clear any input
+            username.value = "";
+            password.value = "";
+            // set placehoder for guide
+            username.placeholder = "username";
+            // remove event to input
+            username.onkeyup = "";
+            // open form modal
+            document.getElementById("login_modal").click();
+            // focus username input
+            username.focus();
+        }
+    </script>
+</body>
+
+</html>
